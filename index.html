@@ -1,6 +1,39 @@
-<html>
-  <body>
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>金馬撈撈</title>
+</head>
+<body>
+    <input type="text" id="inputField" placeholder="Enter something...">
     <button id="fetchButton">Fetch Data</button>
     <div id="results"></div>
-  </body>
+
+    <script>
+        document.getElementById('fetchButton').addEventListener('click', function() {
+            const inputValue = document.getElementById('inputField').value;
+
+            fetch('https://tghff.tixcraft.com/activity/game/23_ghmf')
+                .then(response => response.text())
+                .then(data => {
+                    const matches = data.match(new RegExp(inputValue, 'g'));
+                    displayResults(matches);
+                })
+                .catch(error => document.getElementById('results').innerHTML = error);
+        });
+
+        function displayResults(matches) {
+            const resultsDiv = document.getElementById('results');
+            let resultsHTML = '<ul>';
+
+            matches.forEach(match => {
+                resultsHTML += `<li>${match}</li>`;
+            });
+
+            resultsHTML += '</ul>';
+
+            resultsDiv.innerHTML = resultsHTML;
+        }
+    </script>
+</body>
 </html>

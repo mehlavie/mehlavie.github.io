@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camera Overlay</title>
+  <style>
+    body {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    #camera-container {
+      position: relative;
+    }
+
+    #overlay-image {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none; /* Make sure the overlay doesn't interfere with camera controls */
+    }
+  </style>
+</head>
+<body>
+  <div id="camera-container">
+    <video id="camera" width="100%" height="100%" autoplay playsinline></video>
+    <img id="overlay-image" src="overlay.png" alt="Overlay Image">
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cameraContainer = document.getElementById('camera-container');
+      const video = document.getElementById('camera');
+
+      // Check if the browser supports the getUserMedia API
+      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+        // Access the camera
+        navigator.mediaDevices.getUserMedia({ video: true })
+          .then((stream) => {
+            video.srcObject = stream;
+          })
+          .catch((error) => {
+            console.error('Error accessing camera:', error);
+          });
+      } else {
+        console.error('getUserMedia is not supported in this browser');
+      }
+    });
+  </script>
+</body>
+</html>

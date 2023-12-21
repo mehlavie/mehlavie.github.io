@@ -16,6 +16,9 @@
 
     #camera-container {
       position: relative;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
     }
 
     #overlay-image {
@@ -23,6 +26,7 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
+      width: 50%; /* Adjust the width percentage as needed */
       pointer-events: none; /* Make sure the overlay doesn't interfere with camera controls */
     }
   </style>
@@ -40,8 +44,8 @@
 
       // Check if the browser supports the getUserMedia API
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        // Access the camera
-        navigator.mediaDevices.getUserMedia({ video: true })
+        // Access the rear camera
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
           .then((stream) => {
             video.srcObject = stream;
           })

@@ -46,7 +46,6 @@
     document.addEventListener('DOMContentLoaded', () => {
       const cameraContainer = document.getElementById('camera-container');
       const video = document.getElementById('camera');
-      const overlayImage = document.getElementById('overlay-image');
 
       // Check if the browser supports the getUserMedia API
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -54,16 +53,6 @@
         navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
           .then((stream) => {
             video.srcObject = stream;
-
-            // Set the overlay size based on the video dimensions
-            video.addEventListener('loadedmetadata', () => {
-              const videoAspectRatio = video.videoWidth / video.videoHeight;
-              const overlayWidth = 50; // Adjust as needed
-              const overlayHeight = overlayWidth / videoAspectRatio;
-
-              overlayImage.style.width = `${overlayWidth}%`;
-              overlayImage.style.height = `${overlayHeight}%`;
-            });
           })
           .catch((error) => {
             console.error('Error accessing camera:', error);

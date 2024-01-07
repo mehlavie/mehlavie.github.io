@@ -24,7 +24,7 @@
 
     #overlay-image {
       position: absolute;
-      top: 30%;
+      top: 40%;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 100%; /* Adjust the width percentage as needed */
@@ -36,9 +36,17 @@
       height: 100%;
       object-fit: cover; /* Ensure the video fills the container while maintaining aspect ratio */
       position: absolute;
-      top: 30%;
+      top: 40%;
       left: 50%;
       transform: translate(-50%, -50%);
+    }
+
+    #text-above {
+      top: 10%;
+    }
+
+    #text-below {
+      bottom: 10%;
     }
   </style>
 </head>
@@ -46,6 +54,8 @@
   <div id="camera-container">
     <video id="camera" width="100%" height="100%" autoplay playsinline></video>
     <img id="overlay-image" src="overlay.PNG" alt="Overlay Image">
+    <div id="text-above"><a>實體喜帖是壓克力材質，我們希望用手機打開電子喜帖的你們也能看到類似的效果。</a></div>
+    <div id="text-below"><a href="https://calendar.google.com/calendar/event?action=TEMPLATE&tmeid=XzZvbzM4ZGhuOGdvajBiOW83NTMzYWI5azhncjRhYjlwODRwM2FiYTQ2a3AzaWQxcDZkMzM0ZHBuODQgbWVsbG93MzlAbQ&tmsrc=mellow39%40gmail.com">加入Google行事曆</a><a> | </a><a href="https://www.taipeimarriott.com.tw/websev?cat=page&id=44">交通資訊</a></div>
   </div>
 
   <script>
